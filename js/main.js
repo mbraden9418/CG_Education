@@ -23,7 +23,7 @@ teacherRatings.push(newRating);
 return teacherRatings;
 }
 
-
+/*
 
 //take user rating input, add to rating array, and output  new average as alert
 var newRating= parseFloat(window.prompt("Please rate your professor between 0.0 - 5.0:"));
@@ -87,8 +87,108 @@ filterCourses(courses, department);
 alert("These courses are in the " + department + " department: " + filteredCourses);
 console.log("Courses: " + filteredCourses);
 
+*/
+
+var gradYear= window.prompt("What is your undergrad COLLEGE graduation year?");
+
+while (gradYear < 1900 || gradYear > 2040)
+{
+  var gradYear= window.prompt("Hey, highschooler or college student, please enter a valid COLLEGE graduation year:");
+}
+
+var gradMonth= window.prompt("What is your COLLEGE graduation month?").toLowerCase();
+
+while (gradMonth!= "may" && gradMonth != "december")
+{
+  var gradMonth= window.prompt("Please enter a valid graduation month, May or December:");
+}
 
 
-/*var gpa= 4.0;
-var email= "lovinTrees@yahoo.com";
-console.log("Courses:", courses, "\n GPA:", gpa, "\n Email:", email);*/
+//anonymous functions to alert welcoming classes
+var welcomeCollegeStudent = function (studentClass)
+{
+  alert("Welcome, " + studentClass + "! ");
+}
+
+var welcomeHsStudent = function (studentClass)
+{
+  alert("You're still a " + studentClass + " in high school! ");
+}
+
+var welcomeCollegeGrad = function (studentClass)
+{
+  alert("You're already a " + studentClass + "!");
+}
+
+var welcomeYoungOne = function (studentClass)
+{
+  alert("You're still younger than in high school! ");
+}
+
+
+/*if (gradYear <2022)
+{
+  welcomeCollegeStudent("freshman");
+}
+else if (gradYear >= 2022)
+{
+  welcomeHsStudent("freshman");
+}
+*/
+var studentClass = "";
+
+function welcomeStudentsByGraduatingClass(gradMonth, gradYear)
+{
+  if (gradYear== 2018 && gradMonth== "may" || gradMonth== "december")
+  {
+    studentClass = "senior";
+    welcomeCollegeStudent(studentClass);
+  }
+  else if (gradYear== 2019 && gradMonth== "may" || gradMonth== "december")
+  {
+    studentClass = "junior";
+    welcomeCollegeStudent(studentClass);
+  }
+  else if (gradYear== 2020 && gradMonth== "may" || gradMonth== "december")
+  {
+    studentClass = "sophomore";
+    welcomeCollegeStudent(studentClass);
+  }
+  else if (gradYear== 2021 && gradMonth== "may" || gradMonth== "december")
+  {
+    studentClass = "freshman";
+    welcomeCollegeStudent(studentClass);
+  }
+  else if (gradYear == 2022 && gradMonth == "may" || gradMonth == "december")
+  {
+    studentClass = "senior";
+    welcomeHsStudent(studentClass);
+  }
+  else if (gradYear== 2023 && gradMonth== "may" || gradMonth== "december")
+  {
+    studentClass = "junior";
+    welcomeHsStudent(studentClass);
+  }
+  else if (gradYear== 2024 && gradMonth== "may" || gradMonth== "december")
+  {
+    studentClass = "sophomore";
+    welcomeHsStudent(studentClass);
+  }
+  else if (gradYear== 2025 && gradMonth== "may" || gradMonth== "december")
+  {
+    studentClass = "freshman";
+    welcomeHsStudent(studentClass);
+  }
+  else if (gradYear< 2018)
+  {
+    studentClass = "college grad";
+    welcomeCollegeGrad(studentClass);
+  }
+  else if (gradYear> 2026)
+  {
+    studentClass = "young one";
+    welcomeYoungOne(studentClass);
+  }
+}
+
+welcomeStudentsByGraduatingClass(gradMonth, gradYear);
