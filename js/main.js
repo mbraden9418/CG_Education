@@ -8,9 +8,10 @@ this.teacherRatings= teacherRatings;
 
 //add prototype functions to all teachers
 Teacher.prototype = {
-  addTeacherRating: function (newRating)
+  addTeacherRating: function (someArray, newRating)
       {
           this.teacherRatings.push(newRating);
+          return this.teacherRatings;
       },
   getRatingAvg: function (teacherRatings)
     {
