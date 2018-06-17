@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/main.js" type="text/javascript">
     </script>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
@@ -32,66 +33,44 @@
       <h1 class="pageTitle">Courses</h1>
     </div>
 
-    <div class="courseBoxes">
+<div class="filtersBar">
+  <h3>Search for a Course:</h3>
 
-    <div class="courseBox">
-    <div class="leftSection">
-      <h4>Class: Anatomy of Movement</h4>
-      <h4>Time: MWF 9:00 AM</h4>
-    </div>
-    <div class="rightSection">
-      <h4>Teacher: Dr. Edward Degas</h4>
-      <h4>Semester: Fall 2019</h4>
-    </div>
-    </div>
+<div class="filterSection">
 
-
-    <div class="courseBox">
-    <div class="leftSection">
-      <h4>Class: Art and Trauma</h4>
-      <h4>Time: TuTh 11:00 AM</h4>
-    </div>
-    <div class="rightSection">
-      <h4>Teacher: Mr. Vincent VanGogh</h4>
-      <h4>Semester: Fall 2019</h4>
-    </div>
-    </div>
-
-
-    <div class="courseBox">
-    <div class="leftSection">
-      <h4>Class: Landscapes with Oil</h4>
-      <h4>Time: MWF 10:00 AM</h4>
-    </div>
-    <div class="rightSection">
-      <h4>Teacher: Mr. Claude Monet</h4>
-      <h4>Semester: Fall 2019</h4>
-    </div>
-    </div>
-
-    <div class="courseBox">
-    <div class="leftSection">
-      <h4>Class: Advanced Ballet</h4>
-      <h4>Time: MWF 2:00 PM</h4>
-    </div>
-    <div class="rightSection">
-      <h4>Teacher: Dr. Edward Degas</h4>
-      <h4>Semester: Fall 2019</h4>
-    </div>
-    </div>
-
-    <div class="courseBox">
-    <div class="leftSection">
-      <h4>Class: Astronomy in Art</h4>
-      <h4>Time: MWF 8:15 AM</h4>
-    </div>
-    <div class="rightSection">
-      <h4>Teacher: Mr. Vincent VanGogh</h4>
-      <h4>Semester: Fall 2019</h4>
-    </div>
-    </div>
-
+  <div class="selectDeptFilter">
+    <select class="selectDeptDrop">
+      <option value="" disabled selected>Select Department</option>
+      <option value="Art">Art</option>
+      <option value="Computer">Computer</option>
+      <option value="Foreign Language"> Foreign Language</option>
+      <option value="Literature">Literature</option>
+      <option value="Math">Math</option>
+      <option value="Philosophy">Philosophy</option>
+      <option value="Physical Education">Physical Education</option>
+      <option value="Science">Science</option>
+      <option value="Social Science">Social Science</option>
+      <option value="Writing">Writing</option>
+    </select>
   </div>
+
+  <div class="selectSemesterFilter">
+    <select class="selectSemesterDrop">
+      <option value="" disabled selected>Select Semester</option>
+      <option value="Fall">Fall</option>
+      <option value="Spring">Spring</option>
+    </select>
+  </div>
+
+  <button type="filterButton" name="filterButton" class="filterButton">Search for Course</button>
+
+</div>
+
+
+
+</div>
+
+<div class="courseBoxes"></div>
 
 
   </body>

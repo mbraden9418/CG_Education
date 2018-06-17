@@ -58,8 +58,9 @@ body{
 .studentProfiles {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: start;
   flex-wrap: wrap;
+  padding-left: 40px;
 
 }
 /*student box styling*/

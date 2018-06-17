@@ -83,20 +83,22 @@ function Course(name, department, teacher, semester) {
     this.semester = semester;
 }
 
-var courses=[
-  course1= new Course ("Interpersonal Communication 103", "social sciences", teacherMonet, "Fall"),
-  course2= new Course ("Psychology 101", "social sciences", teacherDegas, "Spring"),
-  course3= new Course ("Yoga 200", "philosophy", teacherVanGogh, "Fall"),
-  course4= new Course ("Biochemistry 307", "science", teacherMonet, "Fall"),
-  course5= new Course ("HTML", "computer", teacherMonet, "Spring"),
-  course6= new Course ("CSS", "computer", teacherDegas, "Spring"),
+var courses = [
+  new Course ("Interpersonal Communication 103", "Social Science", teacherMonet.name, "Fall"),
+  new Course ("Psychology 101", "Social Science", teacherDegas.name, "Spring"),
+  new Course ("Yoga 200", "Philosophy", teacherVanGogh.name, "Fall"),
+  new Course ("Biochemistry 307", "Science", teacherMonet.name, "Fall"),
+  new Course ("HTML", "Computer", teacherMonet.name, "Spring"),
+  new Course ("CSS", "Computer", teacherDegas.name, "Spring"),
+  new Course ("Algebra 101", "Math", teacherDegas.name, "Fall"),
+  new Course ("Watercolors 203", "Art", teacherMonet.name, "Fall"),
+  new Course ("English Composition 101", "Writing", teacherDegas.name, "Spring"),
+  new Course ("African American Lit 301", "Literature", teacherDegas.name, "Spring"),
 ];
 
-//test that we are correctly referencing teacher object within course object array
-console.log(courses[1].teacher.name);
 
 
-/*function to make an average of ratings with an array input
+//function to make an average of ratings with an array input
 function getRatingAvg(input)
 {
   var ratingsSum=0;
@@ -113,7 +115,7 @@ function addTeacherRating(someArray, newRating)
 {
 return teacher.teacherRatings;
 }
-*/
+
 
 
 //take user rating input and verify it is valid
@@ -147,31 +149,30 @@ console.log("Teacher: ", teacherMonet.name,
 
 
 
-console.log("Courses: " + courses[1].name + courses[2].name);
-
-var filteredCourses= [];
-
 function filterCourses(courses, department)
 {
+  var filteredCourses = [];
   for ( var i=0; i<courses.length; i++)
   {
-    if (department==courses[i].department)
+    if (department == courses[i].department.toLowerCase())
     {
       filteredCourses.push(courses[i].name);
     }
   }
+  return filteredCourses;
 }
+
 var department= window.prompt("In which department are you searching for a course?").toLowerCase();
 
 while (department != "science" && department != "computer" &&
 department != "art" && department != "language" &&
- department != "philosophy" && department != "social sciences"
+ department != "philosophy" && department != "social science"
 && department != "math" && department != "history")
  {
 var department= window.prompt("Please enter a valid school department:").toLowerCase();
 }
 
-filterCourses(courses, department);
+var filteredCourses = filterCourses(courses, department);
 alert("These courses are in the " + department + " department: " + filteredCourses);
 console.log("Courses: " + filteredCourses);
 
@@ -272,3 +273,45 @@ function welcomeStudentsByGraduatingClass(gradMonth, gradYear)
 }
 
 welcomeStudentsByGraduatingClass(gradMonth, gradYear);
+
+$(document).ready(function(){
+
+  var deptSearch= "";
+  var semesterSearch="";
+
+var filteredCourses = filterCourses(courses, deptSearch);
+  $('.filterButton').click(function(){
+
+    deptSearch= $('.selectDeptDrop').val();
+    semesterSearch= $('.selectSemesterDrop').val();
+    console.log(deptSearch);
+    console.log(semesterSearch);
+    filterCourses(courses, deptSearch);
+    console.log(filteredCourses);
+  });
+
+//template literal string
+function updateCourseDisplay(courses){
+  for ( var i=0; i<courses.length; i++)
+  {
+    var courseDisplayed =
+`
+<div class="courseBox">
+<div class="leftSection">
+  <h4><i>Class: </i>${courses[i].name}</h4>
+  <h4><i>Department: </i>${courses[i].department}</h4>
+</div>
+<div class="rightSection">
+  <h4><i>Professor: </i>${courses[i].teacher}</h4>
+  <h4><i>Semester: </i>${courses[i].semester}</h4>
+</div>
+</div>
+`;
+
+$('.courseBoxes').append(courseDisplayed);
+
+  }
+}
+updateCourseDisplay(courses);
+
+});
