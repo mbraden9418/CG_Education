@@ -270,7 +270,7 @@ welcomeStudentsByGraduatingClass(gradMonth, gradYear);
 
 
 $(document).ready(function(){
-//template literal string
+//template literal string, filtering courses by semester and department:
 function updateCourseDisplay(courses){
   for ( var i=0; i<courses.length; i++)
   {
@@ -308,5 +308,11 @@ $('.filterButton').click(function(){
   $('.courseBoxes').empty();
   updateCourseDisplay(filteredCourses);
 });
+
+//Make teacher ratings interactive
+$(".flip").click(function(){
+        $(".panelToRate").slideDown("slow");
+    });
+
 
 });
