@@ -93,7 +93,14 @@ var courses = [
   new Course ("Algebra 101", "Math", teacherDegas.name, "Fall"),
   new Course ("Watercolors 203", "Art", teacherMonet.name, "Fall"),
   new Course ("English Composition 101", "Writing", teacherDegas.name, "Spring"),
-  new Course ("African American Lit 301", "Literature", teacherDegas.name, "Spring"),
+  new Course ("German 301", "Foreign Language", teacherVanGogh.name, "Fall"),
+  new Course ("Tibetan Debate 400", "Foreign Language", teacherMonet.name, "Spring"),
+  new Course ("Modern American Lit", "Literature", teacherMonet.name, "Fall"),
+  new Course ("Kickboxing 100", "Physical Education", teacherVanGogh.name, "Spring"),
+  new Course ("Figure Drawing 203", "Art", teacherDegas.name, "Spring"),
+  new Course ("Calculus 203", "Math", teacherMonet.name, "Spring"),
+
+
 ];
 
 
@@ -117,7 +124,7 @@ return teacher.teacherRatings;
 }
 
 
-
+/*
 //take user rating input and verify it is valid
 var newRating= parseFloat(window.prompt("Please rate your professor between 0.0 - 5.0:"));
 
@@ -147,34 +154,21 @@ console.log("Teacher: ", teacherMonet.name,
 "\nRatings: ", teacherMonet.teacherRatings,
 "\n Avg Rating: ", roundedAvgRating);
 
+*/
 
-
-function filterCourses(courses, department)
+function filterCourses(courses, department, semester)
 {
   var filteredCourses = [];
   for ( var i=0; i<courses.length; i++)
   {
-    if (department == courses[i].department.toLowerCase())
+    if (department == courses[i].department.toLowerCase() && semester==courses[i].semester.toLowerCase())
     {
-      filteredCourses.push(courses[i].name);
+      filteredCourses.push(courses[i]);
+      console.log("Filtered: "+ filteredCourses);
     }
   }
   return filteredCourses;
 }
-
-var department= window.prompt("In which department are you searching for a course?").toLowerCase();
-
-while (department != "science" && department != "computer" &&
-department != "art" && department != "language" &&
- department != "philosophy" && department != "social science"
-&& department != "math" && department != "history")
- {
-var department= window.prompt("Please enter a valid school department:").toLowerCase();
-}
-
-var filteredCourses = filterCourses(courses, department);
-alert("These courses are in the " + department + " department: " + filteredCourses);
-console.log("Courses: " + filteredCourses);
 
 
 //prompt user for grad year and month, check validity
@@ -274,22 +268,8 @@ function welcomeStudentsByGraduatingClass(gradMonth, gradYear)
 
 welcomeStudentsByGraduatingClass(gradMonth, gradYear);
 
+
 $(document).ready(function(){
-
-  var deptSearch= "";
-  var semesterSearch="";
-
-var filteredCourses = filterCourses(courses, deptSearch);
-  $('.filterButton').click(function(){
-
-    deptSearch= $('.selectDeptDrop').val();
-    semesterSearch= $('.selectSemesterDrop').val();
-    console.log(deptSearch);
-    console.log(semesterSearch);
-    filterCourses(courses, deptSearch);
-    console.log(filteredCourses);
-  });
-
 //template literal string
 function updateCourseDisplay(courses){
   for ( var i=0; i<courses.length; i++)
@@ -312,6 +292,21 @@ $('.courseBoxes').append(courseDisplayed);
 
   }
 }
+
 updateCourseDisplay(courses);
+
+var deptSearch= "";
+var semesterSearch="";
+
+
+$('.filterButton').click(function(){
+  deptSearch= $('.selectDeptDrop').val().toLowerCase();
+  semesterSearch= $('.selectSemesterDrop').val().toLowerCase();
+  console.log(deptSearch);
+  console.log(semesterSearch);
+  filteredCourses=filterCourses(courses, deptSearch, semesterSearch);
+  $('.courseBoxes').empty();
+  updateCourseDisplay(filteredCourses);
+});
 
 });
