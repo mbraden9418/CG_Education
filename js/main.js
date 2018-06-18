@@ -25,12 +25,14 @@ Teacher.prototype = {
     }
 }
 //create instances of teacher objects
-var teacherVanGogh = new Teacher("Mr. Vincent VanGogh", "Art", [2.4, 3.6, 4.5])
-
-var teacherDegas = new Teacher("Mr. Edward Degas", "Science", [2.4, 3.6, 4.5])
-
-var teacherMonet = new Teacher("Mr. Claude Monet", "Psychology", [2.4, 3.6, 4.5])
-
+var teachers = [
+new Teacher("Mr. Vincent VanGogh", "Art", [2.4, 3.6, 4.5]),
+new Teacher("Mr. Edward Degas", "Science", [2.4, 3.6, 4.5]),
+new Teacher("Mr. Claude Monet", "Psychology", [2.4, 3.6, 4.5]),
+new Teacher("Mr. Pablo Picasso", "Math", [2.4, 3.6, 4.5]),
+new Teacher("Ms. Georgia O'Keefe", "Literature", [2.4, 3.6, 4.5]),
+new Teacher("Ms. Frida Kahlo", "Foreign Language", [2.4, 3.6, 4.5]),
+]
 // create student prototype
 function Student(name, major, email, avgGPA, courses)
 {
@@ -84,21 +86,21 @@ function Course(name, department, teacher, semester) {
 }
 
 var courses = [
-  new Course ("Interpersonal Communication 103", "Social Science", teacherMonet.name, "Fall"),
-  new Course ("Psychology 101", "Social Science", teacherDegas.name, "Spring"),
-  new Course ("Yoga 200", "Philosophy", teacherVanGogh.name, "Fall"),
-  new Course ("Biochemistry 307", "Science", teacherMonet.name, "Fall"),
-  new Course ("HTML", "Computer", teacherMonet.name, "Spring"),
-  new Course ("CSS", "Computer", teacherDegas.name, "Spring"),
-  new Course ("Algebra 101", "Math", teacherDegas.name, "Fall"),
-  new Course ("Watercolors 203", "Art", teacherMonet.name, "Fall"),
-  new Course ("English Composition 101", "Writing", teacherDegas.name, "Spring"),
-  new Course ("German 301", "Foreign Language", teacherVanGogh.name, "Fall"),
-  new Course ("Tibetan Debate 400", "Foreign Language", teacherMonet.name, "Spring"),
-  new Course ("Modern American Lit", "Literature", teacherMonet.name, "Fall"),
-  new Course ("Kickboxing 100", "Physical Education", teacherVanGogh.name, "Spring"),
-  new Course ("Figure Drawing 203", "Art", teacherDegas.name, "Spring"),
-  new Course ("Calculus 203", "Math", teacherMonet.name, "Spring"),
+  new Course ("Interpersonal Communication 103", "Social Science", teachers[1].name, "Fall"),
+  new Course ("Psychology 101", "Social Science", teachers[2].name, "Spring"),
+  new Course ("Yoga 200", "Philosophy", teachers[3].name, "Fall"),
+  new Course ("Biochemistry 307", "Science", teachers[4].name, "Fall"),
+  new Course ("HTML", "Computer", teachers[5].name, "Spring"),
+  new Course ("CSS", "Computer", teachers[0].name, "Spring"),
+  new Course ("Algebra 101", "Math", teachers[0].name, "Fall"),
+  new Course ("Watercolors 203", "Art", teachers[1].name, "Fall"),
+  new Course ("English Composition 101", "Writing", teachers[2].name, "Spring"),
+  new Course ("German 301", "Foreign Language", teachers[3].name, "Fall"),
+  new Course ("Tibetan Debate 400", "Foreign Language", teachers[4].name, "Spring"),
+  new Course ("Modern American Lit", "Literature", teachers[5].name, "Fall"),
+  new Course ("Kickboxing 100", "Physical Education", teachers[2].name, "Spring"),
+  new Course ("Figure Drawing 203", "Art", teachers[0].name, "Spring"),
+  new Course ("Calculus 203", "Math", teachers[1].name, "Spring"),
 
 
 ];
@@ -270,7 +272,7 @@ welcomeStudentsByGraduatingClass(gradMonth, gradYear);
 
 
 $(document).ready(function(){
-//template literal string, filtering courses by semester and department:
+//template literal string, add courses on load of page, :
 function updateCourseDisplay(courses){
   for ( var i=0; i<courses.length; i++)
   {
@@ -295,6 +297,7 @@ $('.courseBoxes').append(courseDisplayed);
 
 updateCourseDisplay(courses);
 
+//filter courses by semester and department
 var deptSearch= "";
 var semesterSearch="";
 
@@ -308,11 +311,53 @@ $('.filterButton').click(function(){
   $('.courseBoxes').empty();
   updateCourseDisplay(filteredCourses);
 });
+//add teacher profiles on page loading:
+function updateTeacherDisplay(teachers){
+  for ( var i=0; i<teachers.length; i++)
+  {
+    var teacherDisplayed =
+`
+<div class="teacherProfile">
+  <div class="topSection">
+    <div class="topLeft">
+      <img class="teacherPhoto" src="images/Teacher_Photos/Monet.jpg" alt="Claude Monet Profile Picture">
+    </div>
+    <div class="topRight">
+      <h2>${teachers[i].name}</h2>
+      <h3>${teachers[i].department}</h3>
+    </div>
+  </div>
 
+  <div class="bottomSection">
+  <div class="bottomSectionLeft">
+    <h3>Courses</h3>
+    <h4>Bridge Architecture</h4>
+    <h4>Lilly Gardening</h4>
+  </div>
+  <div class="bottomSectionRight">
+    <h3>Rating</h3>
+    <h4>${teachers[i].getRatingAvg(teachers[i].teacherRatings)}</h4>
+  </div>
+</div>
+</div>
+`;
+
+$('.teacherBoxes').append(teacherDisplayed);
+  }
+}
+updateTeacherDisplay(teachers);
 //Make teacher ratings interactive
-$(".flip").click(function(){
-        $(".panelToRate").slideDown("slow");
+
+
+
+$(".teacherProfile").click(function(){
+        $(".panelToRate").slideDown("fast");
+        $(".panelToRate").css('display', 'flex');
     });
+
+$(".closeThisBox h4").click(function(){
+            $(".panelToRate").hide("fast");
+      });
 
 
 });

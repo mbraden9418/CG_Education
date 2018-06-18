@@ -67,16 +67,25 @@ body{
 .panelToRate{
   display: flex;
   flex-flow: row;
+  display:none;
 }
 .teacherWeRate{
   width: 50%;
 }
 .userMakesRating{
   width: 45%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 #submitRatingButton{
   background-color: #006699;
   color: #FFFFFF;
+  width: 106px;
+}
+#ratingForm{
+  width: 100px;
+  margin-bottom: 15px;
 }
 .closeThisBox{
   width:16px;
