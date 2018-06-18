@@ -1,9 +1,10 @@
 //create teacher object
-function Teacher(name, department, teacherRatings)
+function Teacher(name, department, teacherRatings, photoSource)
 {
 this.name= name;
 this.department= department;
 this.teacherRatings= teacherRatings;
+this.photoSource= photoSource;
 }
 
 //add prototype functions to all teachers
@@ -26,12 +27,12 @@ Teacher.prototype = {
 }
 //create instances of teacher objects
 var teachers = [
-new Teacher("Mr. Vincent VanGogh", "Art", [2.4, 3.6, 4.5]),
-new Teacher("Mr. Edward Degas", "Science", [2.4, 3.6, 4.5]),
-new Teacher("Mr. Claude Monet", "Psychology", [2.4, 3.6, 4.5]),
-new Teacher("Mr. Pablo Picasso", "Math", [2.4, 3.6, 4.5]),
-new Teacher("Ms. Georgia O'Keefe", "Literature", [2.4, 3.6, 4.5]),
-new Teacher("Ms. Frida Kahlo", "Foreign Language", [2.4, 3.6, 4.5]),
+new Teacher("Mr. Vincent VanGogh", "Art",[2.4, 3.6, 4.5], "images/Teacher_Photos/vanGogh.jpg"),
+new Teacher("Mr. Edward Degas", "Science", [2.4, 3.6, 4.5], "images/Teacher_Photos/Degas.jpg"),
+new Teacher("Mr. Claude Monet", "Psychology", [2.4, 3.6, 4.5], "images/Teacher_Photos/Monet.jpg"),
+new Teacher("Mr. Pablo Picasso", "Math", [2.4, 3.6, 4.5], "images/Teacher_Photos/Picasso.jpg"),
+new Teacher("Ms. Georgia O'Keefe", "Literature", [2.4, 3.6, 4.5], "images/Teacher_Photos/O'Keefe.jpg"),
+new Teacher("Ms. Frida Kahlo", "Foreign Language",  [2.4, 3.6, 4.5], "images/Teacher_Photos/Kahlo.jpg"),
 ]
 // create student prototype
 function Student(name, major, email, avgGPA, courses)
@@ -320,7 +321,7 @@ function updateTeacherDisplay(teachers){
 <div class="teacherProfile">
   <div class="topSection">
     <div class="topLeft">
-      <img class="teacherPhoto" src="images/Teacher_Photos/Monet.jpg" alt="Claude Monet Profile Picture">
+      <img class="teacherPhoto" src="${teachers[i].photoSource}" alt="Professor's Picture">
     </div>
     <div class="topRight">
       <h2>${teachers[i].name}</h2>
