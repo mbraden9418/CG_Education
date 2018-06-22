@@ -1,10 +1,11 @@
 //create teacher object
-function Teacher(name, department, teacherRatings, photoSource)
+function Teacher(name, department, teacherRatings, photoSource, coursesTaught)
 {
 this.name= name;
 this.department= department;
 this.teacherRatings= teacherRatings;
 this.photoSource= photoSource;
+this.coursesTaught=coursesTaught;
 }
 
 //add prototype functions to all teachers
@@ -27,12 +28,12 @@ Teacher.prototype = {
 }
 //create instances of teacher objects
 var teachers = [
-new Teacher("Mr. Vincent VanGogh", "Art",[2.4, 3.6, 4.5], "images/Teacher_Photos/vanGogh.jpg"),
-new Teacher("Mr. Edward Degas", "Science", [2.4, 3.6, 4.5], "images/Teacher_Photos/Degas.jpg"),
-new Teacher("Mr. Claude Monet", "Psychology", [2.4, 3.6, 4.5], "images/Teacher_Photos/Monet.jpg"),
-new Teacher("Mr. Pablo Picasso", "Math", [2.4, 3.6, 4.5], "images/Teacher_Photos/Picasso.jpg"),
-new Teacher("Ms. Georgia O'Keefe", "Literature", [2.4, 3.6, 4.5], "images/Teacher_Photos/O'Keefe.jpg"),
-new Teacher("Ms. Frida Kahlo", "Foreign Language",  [2.4, 3.6, 4.5], "images/Teacher_Photos/Kahlo.jpg"),
+new Teacher("Mr. Vincent VanGogh", "Art",[2.4, 3.6, 4.5], "images/Teacher_Photos/vanGogh.jpg", ["Calculus 203", "Algebra 101"]),
+new Teacher("Mr. Edward Degas", "Science", [2.4, 3.6, 4.5], "images/Teacher_Photos/Degas.jpg", ["Ballet 303", "Anatomy 207"]),
+new Teacher("Mr. Claude Monet", "Psychology", [2.4, 3.6, 4.5], "images/Teacher_Photos/Monet.jpg", ["Botany 202", "Zoology 203"]),
+new Teacher("Mr. Pablo Picasso", "Math", [2.4, 3.6, 4.5], "images/Teacher_Photos/Picasso.jpg", ["Physics 207", "Biochemistry 301"]),
+new Teacher("Ms. Georgia O'Keefe", "Literature", [2.4, 3.6, 4.5], "images/Teacher_Photos/O'Keefe.jpg", ["Organic Chemistry 301", "General Chemistry 102"]),
+new Teacher("Ms. Frida Kahlo", "Foreign Language",  [2.4, 3.6, 4.5], "images/Teacher_Photos/Kahlo.jpg", ["Modern American Lit 202", "Spanish 303"]),
 ]
 // create student prototype
 function Student(name, major, email, avgGPA, courses)
@@ -324,7 +325,7 @@ function updateTeacherDisplay(teachers){
       <img class="teacherPhoto" src="${teachers[i].photoSource}" alt="Professor's Picture">
     </div>
     <div class="topRight">
-      <h2>${teachers[i].name}</h2>
+      <h2 class= teacherName>${teachers[i].name}</h2>
       <h3>${teachers[i].department}</h3>
     </div>
   </div>
@@ -332,8 +333,8 @@ function updateTeacherDisplay(teachers){
   <div class="bottomSection">
   <div class="bottomSectionLeft">
     <h3>Courses</h3>
-    <h4>Bridge Architecture</h4>
-    <h4>Lilly Gardening</h4>
+    <h4>${teachers[i].coursesTaught[0]}</h4>
+    <h4>${teachers[i].coursesTaught[1]}</h4>
   </div>
   <div class="bottomSectionRight">
     <h3>Rating</h3>
@@ -347,18 +348,48 @@ $('.teacherBoxes').append(teacherDisplayed);
   }
 }
 updateTeacherDisplay(teachers);
+
 //Make teacher ratings interactive
 
-
-
-$(".teacherProfile").click(function(){
+$(".teacherName").click(function(){
         $(".panelToRate").slideDown("fast");
         $(".panelToRate").css('display', 'flex');
+        var chosenTeacherName= $(this).html();
+        var selectedTeacher = {};
+
+
+        for (var i=0; i < teachers.length; i++)
+        {
+          if (chosenTeacherName == teachers[i].name)
+          {
+            selectedTeacher = teachers[i];
+          }
+        }
+
+        var chosenTeacherDisplayed =
+        `
+        <h4>Professor:      ${selectedTeacher.name}</h4>
+        <h4>Department:     ${selectedTeacher.department}</h4>
+        <h4>Current Rating: ${selectedTeacher.getRatingAvg(selectedTeacher.teacherRatings)}</h4>
+        `;
+        $('.teacherWeRate').html(chosenTeacherDisplayed);
+
     });
 
 $(".closeThisBox h4").click(function(){
             $(".panelToRate").hide("fast");
       });
 
+/*var newRating= "";
+      $('#submitRatingButton').click(function(){
+        deptSearch= $('.selectDeptDrop').val().toLowerCase();
+        newRating= parseFloat(window.prompt("Please rate your professor between 0.0 - 5.0:"));
+
+        while(newRating <= 0.0 || newRating >= 5.0)
+        {
+        var newRating= parseFloat(window.prompt("Please make your rating between 0.0 - 5.0:"));
+        }
+      });
+*/
 
 });
