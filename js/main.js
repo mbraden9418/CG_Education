@@ -103,8 +103,6 @@ var courses = [
   new Course ("Kickboxing 100", "Physical Education", teachers[2].name, "Spring"),
   new Course ("Figure Drawing 203", "Art", teachers[0].name, "Spring"),
   new Course ("Calculus 203", "Math", teachers[1].name, "Spring"),
-
-
 ];
 
 
@@ -127,38 +125,6 @@ function addTeacherRating(someArray, newRating)
 return teacher.teacherRatings;
 }
 
-
-/*
-//take user rating input and verify it is valid
-var newRating= parseFloat(window.prompt("Please rate your professor between 0.0 - 5.0:"));
-
-while(newRating <= 0.0 || newRating >= 5.0)
-{
-var newRating= parseFloat(window.prompt("Please make your rating between 0.0 - 5.0:"));
-}
-
-
-
-//define rounded variable to tenth place
-
-
-alert("Thanks for rating " + teacherMonet.name + " a " + newRating);
-
-teacherMonet.addTeacherRating(teacherMonet.teacherRatings, newRating);
-
-alert(teacherMonet.name + " now has ratings of: " +  teacherMonet.teacherRatings);
-
-var roundedAvgRating= Math.round(10 * teacherMonet.getRatingAvg(teacherMonet.teacherRatings))/10;
-
-alert(teacherMonet.name + " now has an average rating of: " + roundedAvgRating);
-
-//print output of variables and ratings to console
-console.log("Teacher: ", teacherMonet.name,
-"\nDepartment: " , teacherMonet.department,
-"\nRatings: ", teacherMonet.teacherRatings,
-"\n Avg Rating: ", roundedAvgRating);
-
-*/
 
 function filterCourses(courses, department, semester)
 {
@@ -307,12 +273,11 @@ var semesterSearch="";
 $('.filterButton').click(function(){
   deptSearch= $('.selectDeptDrop').val().toLowerCase();
   semesterSearch= $('.selectSemesterDrop').val().toLowerCase();
-  console.log(deptSearch);
-  console.log(semesterSearch);
   filteredCourses=filterCourses(courses, deptSearch, semesterSearch);
   $('.courseBoxes').empty();
   updateCourseDisplay(filteredCourses);
 });
+
 //add teacher profiles on page loading:
 function updateTeacherDisplay(teachers){
   for ( var i=0; i<teachers.length; i++)
@@ -338,7 +303,7 @@ function updateTeacherDisplay(teachers){
   </div>
   <div class="bottomSectionRight">
     <h3>Rating</h3>
-    <h4>${teachers[i].getRatingAvg(teachers[i].teacherRatings)}</h4>
+    <h4 >${teachers[i].getRatingAvg(teachers[i].teacherRatings)}</h4>
   </div>
 </div>
 </div>
@@ -347,16 +312,18 @@ function updateTeacherDisplay(teachers){
 $('.teacherBoxes').append(teacherDisplayed);
   }
 }
+
 updateTeacherDisplay(teachers);
 
 //Make teacher ratings interactive
+var selectedTeacher = {};
+var chosenTeacherAverage;
 
 $(".teacherName").click(function(){
+        console.log("clicked on teacher name..")
         $(".panelToRate").slideDown("fast");
         $(".panelToRate").css('display', 'flex');
         var chosenTeacherName= $(this).html();
-        var selectedTeacher = {};
-
 
         for (var i=0; i < teachers.length; i++)
         {
@@ -368,7 +335,7 @@ $(".teacherName").click(function(){
 
         var chosenTeacherDisplayed =
         `
-        <h4>Professor:      ${selectedTeacher.name}</h4>
+        <h4 id= profName >Professor:      ${selectedTeacher.name}</h4>
         <h4>Department:     ${selectedTeacher.department}</h4>
         <h4>Current Rating: ${selectedTeacher.getRatingAvg(selectedTeacher.teacherRatings)}</h4>
         `;
@@ -380,16 +347,31 @@ $(".closeThisBox h4").click(function(){
             $(".panelToRate").hide("fast");
       });
 
-/*var newRating= "";
-      $('#submitRatingButton').click(function(){
-        deptSearch= $('.selectDeptDrop').val().toLowerCase();
-        newRating= parseFloat(window.prompt("Please rate your professor between 0.0 - 5.0:"));
+var newRating= "";
 
-        while(newRating <= 0.0 || newRating >= 5.0)
+      $('#submitRatingButton').click(function(){
+        newRating= parseFloat($('#ratingForm').val());
+
+        while(newRating < 0.0 || newRating > 5.0)
         {
         var newRating= parseFloat(window.prompt("Please make your rating between 0.0 - 5.0:"));
         }
+
+        for (var i=0; i < teachers.length; i++)
+        {
+          if (selectedTeacher.name == teachers[i].name)
+          {
+            selectedTeacher = teachers[i];
+            teachers[i].addTeacherRating(teachers[i].teacherRatings, newRating);
+            var roundedAvgRating= Math.round(10 * teachers[i].getRatingAvg(teachers[i].teacherRatings))/10;
+          }
+        }
+
+        $('.teacherBoxes').empty();
+        updateTeacherDisplay(teachers);
+        $(".panelToRate").hide("fast");
+
       });
-*/
+
 
 });
