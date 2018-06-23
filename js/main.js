@@ -112,8 +112,6 @@ var courses = [
   new Course ("Calculus 203", "Math", teachers[1].name, "Spring"),
 ];
 
-
-
 //function to make an average of ratings with an array input
 function getRatingAvg(input)
 {
@@ -141,111 +139,12 @@ function filterCourses(courses, department, semester)
     if (department == courses[i].department.toLowerCase() && semester==courses[i].semester.toLowerCase())
     {
       filteredCourses.push(courses[i]);
-      console.log("Filtered: "+ filteredCourses);
     }
   }
   return filteredCourses;
 }
 
-
-//prompt user for grad year and month, check validity
-var gradYear= window.prompt("What is your undergrad COLLEGE graduation year?");
-
-while (gradYear < 1900 || gradYear > 2040)
-{
-  var gradYear= window.prompt("Hey, highschooler or college student, please enter a valid COLLEGE graduation year:");
-}
-
-var gradMonth= window.prompt("What is your COLLEGE graduation month?").toLowerCase();
-
-while (gradMonth!= "may" && gradMonth != "december")
-{
-  var gradMonth= window.prompt("Please enter a valid graduation month, May or December:");
-}
-
-
-//anonymous functions to alert welcoming classes
-var welcomeCollegeStudent = function (studentClass)
-{
-  alert("Welcome, " + studentClass + "! ");
-}
-
-var welcomeHsStudent = function (studentClass)
-{
-  alert("You're still a " + studentClass + " in high school! ");
-}
-
-var welcomeCollegeGrad = function (studentClass)
-{
-  alert("You're already a " + studentClass + "!");
-}
-
-var welcomeYoungOne = function (studentClass)
-{
-  alert("You're still younger than in high school! ");
-}
-
-
-//determine student graduating classes and welcome
-var studentClass = "";
-
-function welcomeStudentsByGraduatingClass(gradMonth, gradYear)
-{
-  if (gradYear== 2018 && gradMonth== "may" || gradMonth== "december")
-  {
-    studentClass = "senior";
-    welcomeCollegeStudent(studentClass);
-  }
-  else if (gradYear== 2019 && gradMonth== "may" || gradMonth== "december")
-  {
-    studentClass = "junior";
-    welcomeCollegeStudent(studentClass);
-  }
-  else if (gradYear== 2020 && gradMonth== "may" || gradMonth== "december")
-  {
-    studentClass = "sophomore";
-    welcomeCollegeStudent(studentClass);
-  }
-  else if (gradYear== 2021 && gradMonth== "may" || gradMonth== "december")
-  {
-    studentClass = "freshman";
-    welcomeCollegeStudent(studentClass);
-  }
-  else if (gradYear == 2022 && gradMonth == "may" || gradMonth == "december")
-  {
-    studentClass = "senior";
-    welcomeHsStudent(studentClass);
-  }
-  else if (gradYear== 2023 && gradMonth== "may" || gradMonth== "december")
-  {
-    studentClass = "junior";
-    welcomeHsStudent(studentClass);
-  }
-  else if (gradYear== 2024 && gradMonth== "may" || gradMonth== "december")
-  {
-    studentClass = "sophomore";
-    welcomeHsStudent(studentClass);
-  }
-  else if (gradYear== 2025 && gradMonth== "may" || gradMonth== "december")
-  {
-    studentClass = "freshman";
-    welcomeHsStudent(studentClass);
-  }
-  else if (gradYear< 2018)
-  {
-    studentClass = "college grad";
-    welcomeCollegeGrad(studentClass);
-  }
-  else if (gradYear> 2026)
-  {
-    studentClass = "young one";
-    welcomeYoungOne(studentClass);
-  }
-}
-
-welcomeStudentsByGraduatingClass(gradMonth, gradYear);
-
-
+//jQuery for pages
 $(document).ready(function(){
 //template literal string, add courses on load of page, :
 function updateCourseDisplay(courses){
@@ -327,6 +226,106 @@ var selectedTeacher = {};
 var chosenTeacherAverage;
 
 $(".teacherName").click(function(){
+
+  //prompt user for grad year and month, check validity
+  var gradYear= window.prompt("What is your undergrad COLLEGE graduation year?");
+
+  while (gradYear < 1900 || gradYear > 2040)
+  {
+    var gradYear= window.prompt("Hey, highschooler or college student, please enter a valid COLLEGE graduation year:");
+  }
+
+  var gradMonth= window.prompt("What is your COLLEGE graduation month?").toLowerCase();
+
+  while (gradMonth!= "may" && gradMonth != "december")
+  {
+    var gradMonth= window.prompt("Please enter a valid graduation month, May or December:");
+  }
+
+
+  //anonymous functions to alert welcoming classes
+  var welcomeCollegeStudent = function (studentClass)
+  {
+    alert("Welcome, " + studentClass + "! ");
+  }
+
+  var welcomeHsStudent = function (studentClass)
+  {
+    alert("You're still a " + studentClass + " in high school! ");
+  }
+
+  var welcomeCollegeGrad = function (studentClass)
+  {
+    alert("You're already a " + studentClass + "!");
+  }
+
+  var welcomeYoungOne = function (studentClass)
+  {
+    alert("You're still younger than in high school! ");
+  }
+
+
+  //determine student graduating classes and welcome
+  var studentClass = "";
+
+  function welcomeStudentsByGraduatingClass(gradMonth, gradYear)
+  {
+    if (gradYear== 2018 && gradMonth== "may" || gradMonth== "december")
+    {
+      studentClass = "senior";
+      welcomeCollegeStudent(studentClass);
+    }
+    else if (gradYear== 2019 && gradMonth== "may" || gradMonth== "december")
+    {
+      studentClass = "junior";
+      welcomeCollegeStudent(studentClass);
+    }
+    else if (gradYear== 2020 && gradMonth== "may" || gradMonth== "december")
+    {
+      studentClass = "sophomore";
+      welcomeCollegeStudent(studentClass);
+    }
+    else if (gradYear== 2021 && gradMonth== "may" || gradMonth== "december")
+    {
+      studentClass = "freshman";
+      welcomeCollegeStudent(studentClass);
+    }
+    else if (gradYear == 2022 && gradMonth == "may" || gradMonth == "december")
+    {
+      studentClass = "senior";
+      welcomeHsStudent(studentClass);
+    }
+    else if (gradYear== 2023 && gradMonth== "may" || gradMonth== "december")
+    {
+      studentClass = "junior";
+      welcomeHsStudent(studentClass);
+    }
+    else if (gradYear== 2024 && gradMonth== "may" || gradMonth== "december")
+    {
+      studentClass = "sophomore";
+      welcomeHsStudent(studentClass);
+    }
+    else if (gradYear== 2025 && gradMonth== "may" || gradMonth== "december")
+    {
+      studentClass = "freshman";
+      welcomeHsStudent(studentClass);
+    }
+    else if (gradYear< 2018)
+    {
+      studentClass = "college grad";
+      welcomeCollegeGrad(studentClass);
+    }
+    else if (gradYear> 2026)
+    {
+      studentClass = "young one";
+      welcomeYoungOne(studentClass);
+    }
+  }
+
+  welcomeStudentsByGraduatingClass(gradMonth, gradYear);
+
+
+
         console.log("clicked on teacher name..")
         $(".panelToRate").slideDown("fast");
         $(".panelToRate").css('display', 'flex');
@@ -377,6 +376,8 @@ var newRating= "";
         $('.teacherBoxes').empty();
         updateTeacherDisplay(teachers);
         $(".panelToRate").hide("fast");
+        $(".flip").html("Thanks for rating " + selectedTeacher.name + "! ");
+
 
       });
 
@@ -394,8 +395,8 @@ function updateStudentDisplay(students){
   <h4>GPA: ${students[i].avgGPA}</h4>
   <h4>Courses:</h4>
   <ul>
-    <li></li>
-    <li></li>
+    <li>${students[i].courses[0]}</li>
+    <li>${students[i].courses[1]}</li>
   </ul>
 </div>
 `;
@@ -404,4 +405,20 @@ $('.studentProfiles').append(studentDisplayed);
   }
 }
 updateStudentDisplay(students);
+
+//create students with form and button click event
+$("#createStudentButton").click(function(){
+  var newStudentName= $('#studentNameInput').val();
+  var newStudentEmail= $('#studentEmailInput').val();
+  var newStudentMajor= $('#studentMajorInput').val();
+  var newStudentGPA=$('#studentGPAInput').val();
+
+  var newStudent = new Student(newStudentName, newStudentMajor, newStudentEmail, newStudentGPA, ["some course", "another course"], "images/Student_Photos/friendlyGiraffe.jpg");
+  console.log(newStudent);
+  students.push(newStudent);
+  console.log(students);
+  $('.studentProfiles').empty();
+  updateStudentDisplay(students);
+});
+
 });

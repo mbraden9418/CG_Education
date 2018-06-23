@@ -53,7 +53,27 @@ body{
   color: #FFFFFF;
   margin: 0;
 }
-
+/*create student form */
+.createStudentsForm{
+  border-bottom-color: #006699;
+  border-bottom-style: solid;
+  padding: 30px;
+  display: flex;
+  flex-flow: row wrap;
+}
+#createStudentButton{
+  background-color: #006699;
+  color: #FFFFFF;
+}
+#createStudentButton:hover{
+  background-color: #FFFFFF;
+  color: #006699;
+  cursor: pointer;
+}
+.rightStudentsForm{
+  display: flex;
+  flex-flow: column-reverse;
+}
 /*style box arrangements*/
 .studentProfiles {
   display: flex;

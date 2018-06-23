@@ -63,6 +63,7 @@ body{
 }
 .flip{
   text-align: center;
+  color: #8B0000;
 }
 .panelToRate{
   display: flex;
@@ -86,6 +87,7 @@ body{
 #submitRatingButton:hover{
   background-color: #FFFFFF;
   color: #006699;
+  cursor: pointer;
 }
 #ratingForm{
   width: 100px;
@@ -100,7 +102,10 @@ body{
   color: #FFFFFF;
   margin-top: 0;
 }
-
+.closeThisBox h4:hover{
+  background-color: grey;
+  cursor: pointer;
+}
 /*arrange teacher profile boxes*/
 .teacherBoxes{
   display: flex;
