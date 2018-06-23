@@ -36,13 +36,14 @@ new Teacher("Ms. Georgia O'Keefe", "Literature", [2.4, 3.6, 4.5], "images/Teache
 new Teacher("Ms. Frida Kahlo", "Foreign Language",  [2.4, 3.6, 4.5], "images/Teacher_Photos/Kahlo.jpg", ["Modern American Lit 202", "Spanish 303"]),
 ]
 // create student prototype
-function Student(name, major, email, avgGPA, courses)
+function Student(name, major, email, avgGPA, courses, photoSource)
 {
   this.name = name;
   this.major=major;
   this.email= email;
   this.avgGPA = avgGPA;
   this.courses= courses;
+  this.photoSource = photoSource;
 }
 
 Student.prototype = {
@@ -61,12 +62,18 @@ Student.prototype = {
           }
         }
       },
+
     changeMajor: function (newMajor)
     {
       this.major= newMajor;
     },
-
 }
+
+var students = [
+  new Student ("Mila Repa", "Architecture", "towerBuilder35@yahoo.com", 3.9, ["Calculus 202", "Masonry 101"], "images/Student_Photos/friendlyGiraffe.jpg"),
+  new Student ("Yeshe Tsogyal", "Elementary Education", "YesheTsogyal@gmail.com", 3.98, ["Interpersonal Communication 103", "Psychology 101"], "images/Student_Photos/friendlyGiraffe.jpg"),
+]
+/*
 //create instance of student object
 var studentFriendlyGiraffe = new Student ("Friendly Giraffe", "Psychology",
 "lovinTrees@yahoo.com", "4.0", ["Interpersonal Communication 103", "Psychology 101", "Yoga 200"]);
@@ -77,7 +84,7 @@ studentFriendlyGiraffe.dropCourse("Psychology 101");
 studentFriendlyGiraffe.changeMajor("Biology");
 
 console.log(studentFriendlyGiraffe.name + " new student major: " + studentFriendlyGiraffe.major + " \n and new courses: " + studentFriendlyGiraffe.courses);
-
+*/
 
 //create course objects
 function Course(name, department, teacher, semester) {
@@ -373,5 +380,28 @@ var newRating= "";
 
       });
 
+//dynamically add students
+function updateStudentDisplay(students){
+  for ( var i=0; i<students.length; i++)
+  {
+    var studentDisplayed =
+`
+<div class="studentBox">
+  <img class="studentPhoto" src="${students[i].photoSource}" alt="Student Photo">
+  <h2>Name: ${students[i].name}</h2>
+  <h3>Major: ${students[i].major}</h3>
+  <h4>Email: ${students[i].email}</h4>
+  <h4>GPA: ${students[i].avgGPA}</h4>
+  <h4>Courses:</h4>
+  <ul>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+`;
 
+$('.studentProfiles').append(studentDisplayed);
+  }
+}
+updateStudentDisplay(students);
 });

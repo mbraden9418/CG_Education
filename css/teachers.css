@@ -83,6 +83,10 @@ body{
   color: #FFFFFF;
   width: 106px;
 }
+#submitRatingButton:hover{
+  background-color: #FFFFFF;
+  color: #006699;
+}
 #ratingForm{
   width: 100px;
   margin-bottom: 15px;
@@ -170,6 +174,10 @@ body{
   font-size: 20px;
 }
 
+.teacherName:hover{
+  color: #01496d;
+  cursor: pointer;
+}
 .bottomSection h3{
   color: #006699;
   padding-bottom: 15px;
