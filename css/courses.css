@@ -75,6 +75,11 @@ body{
   background-color: #006699;
   color: #FFFFFF;
 }
+.filterButton:hover{
+  background-color: #FFFFFF;
+  color: #006699;
+  cursor: pointer;
+}
 /*Style course boxes */
 .courseBox{
   width: 400px;

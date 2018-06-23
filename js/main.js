@@ -376,7 +376,7 @@ var newRating= "";
         $('.teacherBoxes').empty();
         updateTeacherDisplay(teachers);
         $(".panelToRate").hide("fast");
-        $(".flip").html("Thanks for rating " + selectedTeacher.name + "! ");
+        $(".flip").html("Thanks for rating " + selectedTeacher.name + "! Check their profile for the updated average!");
 
 
       });
